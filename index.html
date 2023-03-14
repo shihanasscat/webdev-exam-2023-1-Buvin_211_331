@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moscow Route</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <!-- Navigation bar -->
+        <nav class="navbar navbar-expand-lg my-4">
+            <div class="container">
+                <a class="navbar-brand d-flex justify-content-start mx-lg-2" href="#">
+                    <img class="logotype" src="images/logo.png" height="200px">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-xl-3">
+                        <li class="nav-item mx-lg-2">
+                            <a class="nav-link" href="#">Путешествия по Москве</a>
+                        </li>
+                        <li class="nav-item mx-lg-2">
+                            <a class="nav-link" href="#">Личный кабинет</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Section with info container -->
+        <section>
+            <div class="container-xl justify-content: space-evenly">
+                <div class="row">
+                    <div class="col">
+                        <div class="hero d-lg-grid py-4 mb-5">
+                            <div class="row" style="margin: 8px;">
+                                <div class="col-lg-6 ">
+                                    <div class="img-logo d-flex justify-content-center">
+                                        <img class="img" src="images/logotype.png">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                                    <p class="info me-0 me-md-3">Удивительные экскурсии от местных жителей!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- Alert -->
+        <div class="alerts d-flex" style="justify-content: center;">
+            <div class="alert alert-success alert-dismissible show" role="alert" id="alert-success"
+                style="display: none; width: 50%;">
+                Success
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="alert alert-danger alert-dismissible show" role="alert" id="alert-danger-error"
+                style="display: none; width: 50%;">
+                Error
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        </div>
+        <!-- Container contains: search, active menu and text lines -->
+        <div class="list-route p-3 mx-auto">
+            <div class="container p-0 ">
+
+                <h2 class="list-route-h2 ">Маршруты</h2>
+                <div class="flex-top mb-4 d-flex">
+                    <div class="d-flex">
+                        <form class="d-flex" role="search">
+                            <input class="form-control" type="search" placeholder="Поиск по названию"
+                                aria-label="Search" id="searchOfName">
+                        </form>
+                    </div>
+                    <!-- Active menu with object -->
+                    <div class="dropdown-menu-objects">
+                        <div class="btn-group">
+                            <p class="me-2 mb-lg-1 d-flex align-items-center" style="color: #f89b31">
+                                Основной объект
+                            </p>
+                            <select class="form-select" name="object-select" id="object-select">
+                                <option>Не выбрано</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Route table(contains http request, templates and page navigation ) -->
+                <div class="route-elements"
+                    data-url="http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes?api_key=a68bcda9-3829-4cc9-9d9d-dbc122c68906">
+                    <div class="card card-route" style="margin-bottom: 16px; ">
+                        <h4 class="card-header"><span class="item-col-name"></span></h4>
+                        <div class="card-body">
+                            <h5 class="card-title">Описание</h5>
+                            <p class="card-text"><span class="item-col-desc"></span></p>
+                            <h5 class="card-title">Основные объекты</h5>
+                            <p class="card-text"><span class="item-col-mainobjects"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <nav aria-label="Page navigation" class="d-flex d-md-block">
+                        <ul class="pagination pagination-routes mt-3">
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+        <!-- Routes templates -->
+        <template id="route-template">
+            <div class="card card-route" style="margin-bottom: 16px;">
+                <h4 class="card-header" style="color: #f89b31 !important;"><span class="item-col-name"></span></h4>
+                <div class="card-body">
+                    <h5 class="card-title">Описание</h5>
+                    <p class="card-text"><span class="item-col-desc"></span></p>
+                    <h5 class="card-title">Основные объекты</h5>
+                    <p class="card-text"><span class="item-col-mainobjects"></span></p>
+                    <button type="btn" class="btn btn-primary" id="change-btn-route">Выбрать</button>
+                </div>
+            </div>
+        </template>
+
+        <!-- Container contains guides list -->
+        <div class="list-guide p-3 mx-auto">
+            <div class="container p-0 ">
+
+                <h2 class="list-guide-h2 ">Доступные гиды по маршруту <span class="name-route"></span></h2>
+                <div class="flex-top mb-4 d-flex align-items-center">
+                    <div class="input-group-skill d-flex">
+                        <p class="skill me-2 mb-lg-1 d-flex align-items-center" style="color: #f89b31">Опыт работы</p>
+                        <input type="text" name="from" id="from" placeholder="от" class="from me-2" required>
+                        <input type="text" name="to" id="to" placeholder="до" class="to" required>
+
+                    </div>
+                    <div class="btn-group btn-group-guide">
+                        <p class="me-2 mb-lg-1 d-flex align-items-center" style="color: #f89b31" id="lang">
+                            Язык экскурсии
+                        </p>
+                        <select class="form-select" name="language-select" id="language-select">
+                            <option value="">Не выбрано</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- Guides table(contains http request, templates ) -->
+                <div class="guide-elements" data-url="http://exam-2023-1-api.std-900.ist.mospolytech.ru">
+                    <div class="row row-cols-xl-1 row-cols-xl-2 row-cols-xl-3 row-cols-xl-4 row-cols-xl-5">
+                        <div class="col">
+                            <div class="card card-guide" style="width: 15rem; margin-bottom: 16px;">
+                                <div class="card-body" style="--bs-card-title-spacer-y: 0;">
+                                    <h5 class="card-title">ФИО</h5>
+                                    <p class="card-text"><span class="item-col-name"></span></p>
+                                    <h5 class="card-title">Языки</h5>
+                                    <p class="card-text"><span class="item-col-language"></span></p>
+                                    <h5 class="card-title">Опыт работы (в годах)</h5>
+                                    <p class="card-text"><span class="item-col-experience"></span></p>
+                                    <h5 class="card-title">Стоимость услуг в час</h5>
+                                    <p class="card-text"><span class="item-col-price-per-hour"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <template id="guide-template">
+                    <div class="col">
+                        <div class="card card-guide" style="width: 15rem; margin-bottom: 16px;">
+                            <div class="card-body" style="--bs-card-title-spacer-y: 0;">
+                                <h5 class="card-title">ФИО</h5>
+                                <p class="card-text"><span class="item-col-name"></span></p>
+                                <h5 class="card-title">Языки</h5>
+                                <p class="card-text"><span class="item-col-language"></span></p>
+                                <h5 class="card-title">Опыт работы (в годах)</h5>
+                                <p class="card-text"><span class="item-col-experience"></span></p>
+                                <h5 class="card-title">Стоимость услуг в час</h5>
+                                <p class="card-text"><span class="item-col-price-per-hour"></span></p>
+                                <button type="btn" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#show-order" id="change-btn-guide">Выбрать</button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
+        </div>
+    </main>
+    <!-- footer with feedback -->
+    <footer class="footer d-flex justify-content-center"
+        style="background-color: #808000; height: 50px; align-items: center;">
+        <div class="footer-div ps-2 text-muted mb-0" style="font-size: 20px;">
+            <p><a href="https://t.me/shihanasscat">2023 Buvin D.S. </a></p>
+        </div>
+    </footer>
+
+    <!-- modal window for create order -->
+    <div class="modal fade" id="show-order" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="showOrderLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Оформление заявки</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="info-modal">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="guide-name" class="col-form-label">ФИО гида</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p style="margin-bottom: 0px;"><span class="guide-name"></span></p>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="route-name" class="col-form-label">Название маршрута</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p style="margin-bottom: 0px;"><span class="route-name"></span></p>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="excursion-date" class="col-form-label">Дата эксурсии</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="date" id="excursion-date" name="excursion-date"
+                                        value="2023-01-01" min="2023-01-01" max="2023-12-31"
+                                        data-url="https://isdayoff.ru" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="excursion-time" class="col-form-label">Время начала</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="time" id="excursion-time" name="excursion-time"
+                                        value="09:00" min="09:00" max="22:30" step="1800" required>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="text" style="text-align: left; font-size: 13px;">
+                                        Доступное время экскурсии с 9:00 до 23:00 с интервалами 30 мин
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="excursion-duration" class="col-form-label">Длительность эксурсии</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-select" id="excursion-duration" name="excursion-duration"
+                                        required>
+                                        <option>1 часа</option>
+                                        <option>2 часа</option>
+                                        <option>3 часа</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="count-people" class="col-form-label">Количество человек</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="number" id="count-people" name="count-people"
+                                        min="1" max="20" value="1" required>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="text" style="text-align: left; font-size: 13px;">
+                                        Min: 1, Max: 20
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="options-container">
+                            <h5>Дополнительные опции:</h5>
+
+                            <div class="options d-flex">
+                                <div class="row mb-2">
+                                    <div class="text-option">
+                                        <label for="option-quick-arrival">Быстрый выезд гида (в течение часа)</label>
+                                        <p class="text-muted">Повышает стоимость на 30%</p>
+                                    </div>
+                                    <input type="checkbox" id="option-quick-arrival" name="option-quick-arrival">
+                                </div>
+
+                                <div class="row mb-2" style="justify-content: end;align-items: end;">
+                                    <div class="text-option">
+                                        <label for="option-surdo-translator">Сопровождение сурдопереводчика</label>
+                                        <p class="text-muted">Увеличивает стоимость на 15%, если посетителей
+                                            от 1 до 5, на 25%, если от 5 до 10. При выборе количества посетителей больше
+                                            10,
+                                            данная опция блокируется.
+                                        </p>
+                                    </div>
+                                    <input type="checkbox" id="option-surdo-translator" name="option-surdo-translator">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="total-price">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="total-price" class="col-form-label">Итоговая стоимость</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p style="font-weight: bold; margin-bottom: 0px;"><span class="total-price">
+                                            руб.</span></p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <input type="hidden" name="action">
+                        <input type="hidden" name="task-id">
+                    </form>
+                </div>
+                <!-- modal window footer, when click on "Отправить" button, creates a request  -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel"
+                        data-bs-dismiss="modal">Отменить</button>
+                    <button type="button" class="btn btn-primary" id="send-order" data-bs-dismiss="modal"
+                        data-url="http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/orders?api_key=a68bcda9-3829-4cc9-9d9d-dbc122c68906">
+                        Отправить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="main-page.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
